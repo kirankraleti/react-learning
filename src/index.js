@@ -1,17 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// NOTE: we cannot include anything outside of src directory
+import Header from './components/header';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import './styles/style.css';
+
+// component - Functions or Classes
+// In React, everything is component based
+
+// component should always return a single statement
+// It is not HTML, it is JSX
+const App = () => {
+    /*
+    return  (
+        <div className="hey">
+            <h1>Hello</h1>
+        </div>
+    )*/
+    // Below is what happens behind the scene
+    // return React.createElement('h1', {className: 'title'}, 'Hello World')
+
+    // OR
+    
+    /*
+    return (
+        <React.Fragment>
+            <h1>Hello</h1>
+            <h2>World</h2>
+        </React.Fragment>
+    )*/
+
+    // Importing components
+
+    return (
+        <>
+            <Header/>
+        </>
+    )
+}
+
+ReactDOM.render(<App/>, document.getElementById("root"));
