@@ -1,60 +1,37 @@
 import React, { Component } from 'react';
 
-// function based component
-/*const Header = () => {
-    // with below we can only return single statement
-    // What if we want to do some processing?
-
-    // return (
-    //     <div>
-    //         The date is {Date.now()}
-    //     </div>
-    // )
-
-    const getTheYear = () => {
-        const newDate = new Date();
-        return newDate.getFullYear();
-    }
-    return (
-        <div>
-            Current year is {getTheYear()}
-        </div>
-    )
-}*/
-
-// class based component
-// cannot return directly from class. So we use extends
-
 class Header extends Component {
+    // we use methods like this in classes
+    hello(){
+        console.log("Hello");
+    }
+    inputChangeHandler = (event) => {
+        console.log(event.target.value);
+        this.hello();
+    }
+    /*inputChangeHandler(event){
+        console.log(event.target.value);
+        this.hello();
+    }*/
     render(){
-        // Below is for inline CSS styling
-        /*return (
-            <header style={styles.header}>
-                <div style={styles.logo}>Logo</div>
-                <input/>
-            </header>
-        )*/
-
+        // to interact with Events (called SyntheticEvents in React)
         return (
             <header>
                 <div className="logo">Logo</div>
-                <input/>
+                <input
+                    /*onChange={this.inputChangeHandler}*/
+                    // to pass a value to function
+                    // onChange={(e) => this.inputChangeHandler(e, 'example)}
+
+                    //to call multiple methods from here
+                    /*onChange={(e) => this.inputChangeHandler(e)}*/
+
+                    // OR change the inputChangeHandler function
+                    onChange={this.inputChangeHandler}
+                />
             </header>
         )
     }
 }
 
-// move all this to public dir
-/*let styles = {
-    header: {
-        background: "#03a9fa"
-    },
-    logo: {
-        color: "#fff",
-        fontFamily: 'Anton',
-        textAlign: 'center'
-    }
-};*/
-
-// can export only one "default" per file
 export default Header;
