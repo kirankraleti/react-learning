@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
 
 class Header extends Component {
-    // we use methods like this in classes
-    hello(){
-        console.log("Hello");
+    //State in react is like a DB for this specific component
+
+    //comes by default in class based component
+
+    // below is a DB
+    state = {
+        name: 'kiran',
+        title: 'Keywords are:',
+        keywords: '',
+        count: 0
     }
+
     inputChangeHandler = (event) => {
-        console.log(event.target.value);
-        this.hello();
+        this.setState({
+            keywords:event.target.value
+        })
     }
-    /*inputChangeHandler(event){
-        console.log(event.target.value);
-        this.hello();
-    }*/
+
+    addOne(){
+        // this.setState({count: this.state.count + 1})
+        // OR
+        this.setState((state) => ({
+            count: state.count +1
+        }))
+    }
+
     render(){
-        // to interact with Events (called SyntheticEvents in React)
         return (
             <header>
                 <div className="logo">Logo</div>
                 <input
-                    /*onChange={this.inputChangeHandler}*/
-                    // to pass a value to function
-                    // onChange={(e) => this.inputChangeHandler(e, 'example)}
-
-                    //to call multiple methods from here
-                    /*onChange={(e) => this.inputChangeHandler(e)}*/
-
-                    // OR change the inputChangeHandler function
                     onChange={this.inputChangeHandler}
                 />
+                <div>{ this.state.title }</div>
+                <div>{ this.state.keywords }</div>
+                <div>{ this.state.count }</div>
+                <button onClick={() => this.addOne() }>Button</button>
             </header>
         )
     }
