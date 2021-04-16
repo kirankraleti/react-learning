@@ -1,43 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-// NOTE: we cannot include anything outside of src directory
 import Header from './components/header';
 
 import './styles/style.css';
+import DB from '../src/db.json';
 
-// component - Functions or Classes
-// In React, everything is component based
+import NewsList from './components/news_list';
 
-// component should always return a single statement
-// It is not HTML, it is JSX
-const App = () => {
-    /*
-    return  (
-        <div className="hey">
-            <h1>Hello</h1>
-        </div>
-    )*/
-    // Below is what happens behind the scene
-    // return React.createElement('h1', {className: 'title'}, 'Hello World')
+class App extends Component {
+    state = {
+        news: DB
+    }
 
-    // OR
-    
-    /*
-    return (
-        <React.Fragment>
-            <h1>Hello</h1>
-            <h2>World</h2>
-        </React.Fragment>
-    )*/
-
-    // Importing components
-
-    return (
-        <>
-            <Header/>
-        </>
-    )
+    // to pass data in state or Functions etc. to component like NewsList, we use PROPS
+    render(){
+        return (
+            <>
+                <Header/>
+                <NewsList
+                    news={this.state.news}
+                />
+            </>
+        )
+    }
 }
 
 ReactDOM.render(<App/>, document.getElementById("root"));

@@ -7,24 +7,13 @@ class Header extends Component {
 
     // below is a DB
     state = {
-        name: 'kiran',
-        title: 'Keywords are:',
-        keywords: '',
-        count: 0
+        keywords: ''
     }
 
     inputChangeHandler = (event) => {
         this.setState({
             keywords:event.target.value
         })
-    }
-
-    addOne(){
-        // this.setState({count: this.state.count + 1})
-        // OR
-        this.setState((state) => ({
-            count: state.count +1
-        }))
     }
 
     render(){
@@ -34,10 +23,6 @@ class Header extends Component {
                 <input
                     onChange={this.inputChangeHandler}
                 />
-                <div>{ this.state.title }</div>
-                <div>{ this.state.keywords }</div>
-                <div>{ this.state.count }</div>
-                <button onClick={() => this.addOne() }>Button</button>
             </header>
         )
     }
