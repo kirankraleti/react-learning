@@ -8,12 +8,14 @@ import DB from '../src/db.json';
 
 import NewsList from './components/news_list';
 import Footer from './components/footer';
+import Life from './components/lifecycle';
 
 class App extends Component {
     state = {
         news: DB,
         filtered: DB,
-        footerText: 'I am a happy footer'
+        footerText: 'I am a happy footer',
+        active: true
     }
 
     getKeywords = (event) => {
@@ -36,12 +38,19 @@ class App extends Component {
                 />
                 {/* <NewsList news={news}/> */}
                 {/* OR to grab children like below */}
-                <NewsList news={filtered}>
+                {/* <NewsList news={filtered}>
                     <br/>
                     <h1>I am a children</h1>
-                </NewsList>
-                {/* <Footer footerText={this.state.footerText}/> */}
-                {/* OR */}
+                </NewsList> */}
+
+                { this.state.active ? 
+                    <Life/>
+                : null }
+
+                <button
+                    onClick={()=>this.setState({active:!this.state.active})}
+                >Action</button>
+
                 <Footer footerText={footerText}/>
             </>
         )
