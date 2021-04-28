@@ -1,31 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Header extends Component {
-    //State in react is like a DB for this specific component
-
-    //comes by default in class based component
-
-    // below is a DB
-    state = {
-        keywords: ''
-    }
-
-    inputChangeHandler = (event) => {
-        this.setState({
-            keywords:event.target.value
-        })
-    }
-
-    render(){
+const Header = (props) => {
         return (
             <header>
                 <div className="logo">Logo</div>
                 <input
-                    onChange={this.inputChangeHandler}
+                    onChange={props.keywords}
                 />
             </header>
         )
-    }
 }
 
 export default Header;

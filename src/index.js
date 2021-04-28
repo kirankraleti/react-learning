@@ -12,18 +12,31 @@ import Footer from './components/footer';
 class App extends Component {
     state = {
         news: DB,
+        filtered: DB,
         footerText: 'I am a happy footer'
+    }
+
+    getKeywords = (event) => {
+        let keywords = event.target.value;
+        let filtered = this.state.news.filter((item) => {
+            return item.title.indexOf(keywords) > -1;
+        });
+        this.setState({
+            filtered
+        });
     }
 
     // to pass data in state or Functions etc. to component like NewsList, we use PROPS
     render(){
-        const {news, footerText} = this.state;
+        const {news, footerText, filtered} = this.state;
         return (
             <>
-                <Header/>
+                <Header
+                    keywords={this.getKeywords}
+                />
                 {/* <NewsList news={news}/> */}
                 {/* OR to grab children like below */}
-                <NewsList news={news}>
+                <NewsList news={filtered}>
                     <br/>
                     <h1>I am a children</h1>
                 </NewsList>
