@@ -1,42 +1,33 @@
-// This is how it is done with hooks.
-import React, {useRef} from 'react';
+// Context lets us store & retrieve data or functions from a central location.
+// can be used in class and functional components
+import React from 'react';
+import {MyProvider} from './context';
+
+import User from './components/user';
 
 
 const App = () => {
 
-  const textInput = useRef();
+  // this goes inside context
+  // const users =[
+  //   {id: 1, name: 'Kiran'},
+  //   {id: 2, name: 'Karthik'},
+  //   {id: 3, name: 'Venky'}
+  // ];
 
-  const triggerHandler = () => {
-    console.log(textInput.current.value);
-  }
-
-    return(
-      <>
-      <h1>Form:</h1>
-      {/* <input type="text" ref={textInput}/> */}
-      <InputComponent ref={textInput}/>
-      <button onClick={triggerHandler}>
-        Trigger
-      </button>
-      </>
-    )
-}
-
-// Ref's cannot be passed as props
-// So below wont work
-
-// const InputComponent = ({ref}) => {
-//   return (
-//     <input type="text" ref={ref}/>
-//   )
-// }
-
-// Solution
-
-const InputComponent = React.forwardRef((props, ref) => {
-  return (
-    <input type="text" ref={ref}/>
+    // return(
+    //   <>
+    //    <User users={users}/>
+    //   </>
+    // )
+  
+  return(
+    <>
+      <MyProvider>
+        <User/>
+      </MyProvider>
+    </>
   )
-});
+}
 
 export default App;
